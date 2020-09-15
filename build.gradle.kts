@@ -17,7 +17,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.10.RELEASE"
 	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
-	id("org.liquibase.gradle") version "2.0.1"
+	id("org.liquibase.gradle") version "2.0.4"
 
 }
 
@@ -40,7 +40,7 @@ liquibase {
 				"referenceUrl" to "hibernate:spring:com.ampmangu.degrees.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy",
 				"defaultSchemaName" to "",
 				"logLevel" to "debug",
-				"classpath" to "$buildDir/classes/java/main"
+				"classpath" to "$buildDir/classes/kotlin/main"
 		)
 	}
 
@@ -64,12 +64,15 @@ dependencies {
 	implementation("org.mariadb.jdbc:mariadb-java-client:2.3.0")
 	implementation("com.zaxxer:HikariCP:3.2.0")
 	testImplementation("com.h2database:h2:1.4.199")
+	implementation("ch.qos.logback:logback-core")
+	testImplementation("ch.qos.logback:logback-classic")
 
 	liquibaseRuntime("org.liquibase:liquibase-core:3.6.3")
 	liquibaseRuntime("org.liquibase.ext:liquibase-hibernate5:3.6")
 	liquibaseRuntime("org.mariadb.jdbc:mariadb-java-client:2.3.0")
 	liquibaseRuntime("org.liquibase:liquibase-groovy-dsl:2.0.1")
-
+	liquibaseRuntime("ch.qos.logback:logback-core")
+	liquibaseRuntime("ch.qos.logback:logback-classic")
 	// HIBERNATE
 	annotationProcessor("org.hibernate:hibernate-jpamodelgen")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-hibernate5")
